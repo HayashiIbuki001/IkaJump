@@ -8,7 +8,9 @@ public class JumpController : MonoBehaviour
     [SerializeField] public float jumpPowerParcentage;
     public new Rigidbody2D rigidbody;
     /// <summary> ジャンプ可能かどうか </summary>
-    private bool jumpTrigger;
+    public bool jumpTrigger;
+    ///<sumary> jumpTriggerの逆　</sumary>
+    private bool revJumpTrigger;
     /// <summary> チャージしている時間 </summary>
     private float chargeTime;
     // Start is called before the first frame update
@@ -18,20 +20,34 @@ public class JumpController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
 
         jumpTrigger = true;
+        revJumpTrigger = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //ジャンプボタンが押される
+        JumpDetection();
+        VariableSharing();
+    }
+
+    /// <summary> ジャンプの動作を検知する</summary>
+    void JumpDetection()
+    {
+        //ジャンプボタンが押されている
         if (Input.GetKey(KeyCode.Space))
         {
             JumpCharge();
         }
 
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (jumpTrigger == true)
         {
-            Jump();
+            //ジャンプボタンを離した
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                Jump();
+                jumpTrigger = false;
+                revJumpTrigger = true;
+            }
         }
     }
 
@@ -51,12 +67,23 @@ public class JumpController : MonoBehaviour
         chargeTime = 0;
     }
 
+    /// <summary>
+    /// 他スクリプトの変数を呼ぶ
+    /// </summary>
+    void VariableSharing()
+    {
+        MoveController moveController = GetComponent<MoveController>();
+        moveController.isJump = revJumpTrigger;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //地面にいるとき
         if (collision.gameObject.tag == "Ground")
         {
             jumpTrigger = true;
+            revJumpTrigger = false;
         }
+        
     }
 }
