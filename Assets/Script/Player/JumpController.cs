@@ -81,8 +81,8 @@ public class JumpController : MonoBehaviour
     /// </summary>
     void VariableSharing()
     {
-        MoveController moveController = GetComponent<MoveController>();
-        moveController.isJump = revJumpTrigger;
+        //MoveController moveController = GetComponent<MoveController>();
+        //moveController.isJump = revJumpTrigger;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

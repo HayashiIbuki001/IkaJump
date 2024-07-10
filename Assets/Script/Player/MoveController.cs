@@ -45,4 +45,14 @@ public class MoveController : MonoBehaviour
             transform.Translate(speed * 0.01f, 0, -0);
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        isJump = false;
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        isJump = true;
+    }
 }
