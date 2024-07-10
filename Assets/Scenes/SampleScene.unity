@@ -499,7 +499,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.3520298, y: 5.920583, z: -10}
+  m_LocalPosition: {x: -2.3520293, y: 5.920583, z: -10}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -881,9 +881,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f86db4a66d24064588ec46629891fe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPowerParcentage: 700
+  jumpPowerParcentage: 800
   rigidbody: {fileID: 0}
   jumpTrigger: 0
+  maxCharge: 1.7
 --- !u!61 &1117736993
 BoxCollider2D:
   m_ObjectHideFlags: 0

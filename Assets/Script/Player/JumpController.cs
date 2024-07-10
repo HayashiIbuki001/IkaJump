@@ -13,6 +13,8 @@ public class JumpController : MonoBehaviour
     private bool revJumpTrigger;
     /// <summary> チャージしている時間 </summary>
     private float chargeTime;
+    /// <summary> 最大チャージまでの秒数 </summary>
+    [SerializeField] public float maxCharge = 2;
     // Start is called before the first frame update
     void Start()
     {
@@ -53,18 +55,25 @@ public class JumpController : MonoBehaviour
 
     void JumpCharge()
     {
-        //チャージした時間を代入
-        chargeTime += Time.deltaTime;
-        //Debug.Log(chargeTime);
+        if (chargeTime < maxCharge)
+        {
+            //チャージした時間を代入
+            chargeTime += Time.deltaTime;
+            //Debug.Log(chargeTime);
+        }
+        else if(chargeTime > maxCharge)
+        { 
+            chargeTime = maxCharge;
+        }
     }
 
     void Jump()
     {
-        //ジャンプ力
-        rigidbody.AddForce(Vector3.up * chargeTime * (jumpPowerParcentage / 100) * 100);
-        Debug.Log(chargeTime * (jumpPowerParcentage / 100) * 100);
-        //チャージリセット
-        chargeTime = 0;
+            //ジャンプ力
+            rigidbody.AddForce(Vector3.up * chargeTime * (jumpPowerParcentage / 100) * 100);
+            Debug.Log(chargeTime * (jumpPowerParcentage / 100) * 100);
+            //チャージリセット
+            chargeTime = 0;       
     }
 
     /// <summary>
@@ -83,6 +92,7 @@ public class JumpController : MonoBehaviour
         {
             jumpTrigger = true;
             revJumpTrigger = false;
+            //Debug.Log("地面いる");
         }
         
     }
