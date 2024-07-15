@@ -71,7 +71,7 @@ public class JumpController : MonoBehaviour
     {
             //ジャンプ力
             rigidbody.AddForce(Vector3.up * chargeTime * (jumpPowerParcentage / 100) * 100);
-            Debug.Log(chargeTime * (jumpPowerParcentage / 100) * 100);
+            //Debug.Log(chargeTime * (jumpPowerParcentage / 100) * 100);
             //チャージリセット
             chargeTime = 0;       
     }
