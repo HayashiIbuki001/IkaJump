@@ -11,7 +11,7 @@ public class MoveController : MonoBehaviour
     /// <summary> ジャンプしているかどうか </summary>
     public bool isJump;
 
-    
+    private bool Finished;
 
     public new Rigidbody2D rigidbody;
     // Start is called before the first frame update
@@ -19,6 +19,8 @@ public class MoveController : MonoBehaviour
     {
         //rigidbodyつける
         rigidbody = GetComponent<Rigidbody2D>();
+
+        Finished = false;
     }
 
     // Update is called once per frame
@@ -33,16 +35,18 @@ public class MoveController : MonoBehaviour
     /// <summary> 移動の制御 </summary>
     void Move()
     {
-
-        //Aか左矢印を押している
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if (!Finished)
         {
-            transform.Translate(speed * -0.01f,0, 0);
-        }
-        //Dか右矢印を押している
-        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        {
-            transform.Translate(speed * 0.01f, 0, -0);
+            //Aか左矢印を押している
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            {
+                transform.Translate(speed * -0.01f, 0, 0);
+            }
+            //Dか右矢印を押している
+            else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            {
+                transform.Translate(speed * 0.01f, 0, -0);
+            }
         }
     }
 
@@ -54,5 +58,14 @@ public class MoveController : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         isJump = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Goal")
+        {
+            Debug.Log("goal");
+            Finished = true;
+        }
     }
 }

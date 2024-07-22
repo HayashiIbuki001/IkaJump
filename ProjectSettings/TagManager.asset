@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - ScreenEdge
+  - Goal
   layers:
   - Default
   - TransparentFX

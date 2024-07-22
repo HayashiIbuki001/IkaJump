@@ -12,6 +12,7 @@ public class TimeUI : MonoBehaviour
     public bool playTimer;
     /// <summary> ç°ÇÃåoâﬂéûä‘ </summary>
     float nowTime;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,8 +25,11 @@ public class TimeUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        var goalObj = GameObject.Find("Goal");
+
         if (timeText != null)
         {
+            if (goalObj != null)
             nowTime += Time.deltaTime;
             int minutes = Mathf.FloorToInt(nowTime / 60);
             int seconds = Mathf.FloorToInt(nowTime % 60);

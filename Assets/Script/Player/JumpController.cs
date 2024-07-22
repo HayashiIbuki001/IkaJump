@@ -15,6 +15,9 @@ public class JumpController : MonoBehaviour
     private float chargeTime;
     /// <summary> 最大チャージまでの秒数 </summary>
     [SerializeField] public float maxCharge = 2;
+
+    /// <summary> ゴール判定 </summary>
+    private bool Finished;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +26,7 @@ public class JumpController : MonoBehaviour
 
         jumpTrigger = true;
         revJumpTrigger = false;
+        Finished = false;
     }
 
     // Update is called once per frame
@@ -30,6 +34,7 @@ public class JumpController : MonoBehaviour
     {
         JumpDetection();
         VariableSharing();
+        Finish();
     }
 
     /// <summary> ジャンプの動作を検知する</summary>
@@ -76,6 +81,19 @@ public class JumpController : MonoBehaviour
             chargeTime = 0;       
     }
 
+    void Finish()
+    {
+        if (Finished)
+        {
+            //Rigidbodyを停止
+            rigidbody.velocity = Vector3.zero;
+
+            //重力を停止させる
+            rigidbody.isKinematic = true;
+        }
+    }
+
+
     /// <summary>
     /// 他スクリプトの変数を呼ぶ
     /// </summary>
@@ -93,7 +111,15 @@ public class JumpController : MonoBehaviour
             jumpTrigger = true;
             revJumpTrigger = false;
             //Debug.Log("地面いる");
+        }      
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Goal")
+        {
+            Debug.Log("goal");
+            Finished = true;
         }
-        
     }
 }
