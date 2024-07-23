@@ -64,7 +64,7 @@ public class MoveController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Goal")
         {
-            Debug.Log("goal");
+            //Debug.Log("goal");
             Finished = true;
         }
     }

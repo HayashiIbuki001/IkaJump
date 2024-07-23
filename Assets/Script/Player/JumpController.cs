@@ -10,7 +10,7 @@ public class JumpController : MonoBehaviour
     /// <summary> ジャンプ可能かどうか </summary>
     public bool jumpTrigger;
     ///<sumary> jumpTriggerの逆　</sumary>
-    private bool revJumpTrigger;
+    //private bool revJumpTrigger;
     /// <summary> チャージしている時間 </summary>
     private float chargeTime;
     /// <summary> 最大チャージまでの秒数 </summary>
@@ -25,7 +25,7 @@ public class JumpController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
 
         jumpTrigger = true;
-        revJumpTrigger = false;
+        //revJumpTrigger = false;
         Finished = false;
     }
 
@@ -53,7 +53,7 @@ public class JumpController : MonoBehaviour
             {
                 Jump();
                 jumpTrigger = false;
-                revJumpTrigger = true;
+                //revJumpTrigger = true;
             }
         }
     }
@@ -109,7 +109,7 @@ public class JumpController : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             jumpTrigger = true;
-            revJumpTrigger = false;
+            //revJumpTrigger = false;
             //Debug.Log("地面いる");
         }      
     }
@@ -118,7 +118,7 @@ public class JumpController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Goal")
         {
-            Debug.Log("goal");
+            //Debug.Log("goal");
             Finished = true;
         }
     }
