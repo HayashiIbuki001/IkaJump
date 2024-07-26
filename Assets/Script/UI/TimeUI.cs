@@ -25,7 +25,7 @@ public class TimeUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var goalObj = GameObject.Find("Goal");
+        var goalObj = GameObject.FindGameObjectWithTag("Goal");
 
         if (timeText != null)
         {
