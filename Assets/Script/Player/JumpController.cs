@@ -9,8 +9,6 @@ public class JumpController : MonoBehaviour
     public new Rigidbody2D rigidbody;
     /// <summary> ジャンプ可能かどうか </summary>
     public bool jumpTrigger;
-    ///<sumary> jumpTriggerの逆　</sumary>
-    //private bool revJumpTrigger;
     /// <summary> チャージしている時間 </summary>
     private float chargeTime;
     /// <summary> 最大チャージまでの秒数 </summary>
@@ -66,19 +64,19 @@ public class JumpController : MonoBehaviour
             chargeTime += Time.deltaTime;
             //Debug.Log(chargeTime);
         }
-        else if(chargeTime > maxCharge)
-        { 
+        else if (chargeTime > maxCharge)
+        {
             chargeTime = maxCharge;
         }
     }
 
     void Jump()
     {
-            //ジャンプ力
-            rigidbody.AddForce(Vector3.up * chargeTime * (jumpPowerParcentage / 100) * 100);
-            //Debug.Log(chargeTime * (jumpPowerParcentage / 100) * 100);
-            //チャージリセット
-            chargeTime = 0;       
+        //ジャンプ力
+        rigidbody.AddForce(Vector3.up * chargeTime * (jumpPowerParcentage / 100) * 100);
+        //Debug.Log(chargeTime * (jumpPowerParcentage / 100) * 100);
+        //チャージリセット
+        chargeTime = 0;
     }
 
     void Finish()
@@ -108,10 +106,23 @@ public class JumpController : MonoBehaviour
         //地面にいるとき
         if (collision.gameObject.tag == "Ground")
         {
-            jumpTrigger = true;
-            //revJumpTrigger = false;
-            //Debug.Log("地面いる");
-        }      
+            // 接触した位置の法線ベクトルを取得
+            Vector2 contactNormal = collision.contacts[0].normal;
+            // 足場の上から接触した場合のみjumpTriggerをtrueにする
+            if (contactNormal.y > 0.5f)
+            {
+                jumpTrigger = true;
+                //Debug.Log("地面いる");
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            jumpTrigger = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

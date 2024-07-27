@@ -45,19 +45,31 @@ public class MoveController : MonoBehaviour
             //Dか右矢印を押している
             else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
-                transform.Translate(speed * 0.01f, 0, -0);
+                transform.Translate(speed * 0.01f, 0, 0);
             }
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        isJump = false;
+        if (collision.gameObject.tag == "Ground")
+        {
+            // 接触した位置の法線ベクトルを取得
+            Vector2 contactNormal = collision.contacts[0].normal;
+            // 足場の上から接触した場合のみisJumpをfalseにする
+            if (contactNormal.y > 0.5f)
+            {
+                isJump = false;
+            }
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        isJump = true;
+        if (collision.gameObject.tag == "Ground")
+        {
+            isJump = true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
