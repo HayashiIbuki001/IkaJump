@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GoalUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Text goalText;
+
+    public void DisplayGoalText(string message)
     {
-        
+        goalText.text = message;
+        goalText.enabled = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void HideGoalText()
     {
-        
+        goalText.enabled = false;
     }
 }
