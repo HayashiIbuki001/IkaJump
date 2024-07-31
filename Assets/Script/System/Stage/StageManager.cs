@@ -14,7 +14,6 @@ public class StageManager : MonoBehaviour
 
     private StageUI stageUI;
 
-
     void Start()
     {
         // シーン内の GoalUI を探す
@@ -63,17 +62,22 @@ public class StageManager : MonoBehaviour
                     goalUI.DisplayGoalText("Stage " + stageCount + "\nClear!");
                 }
 
-                // 3秒後にシーンを再読み込み
-                StartCoroutine(ReloadSceneAfterDelay(3f));
+                // 新しいシーンを読み込むコルーチンを開始
+                StartCoroutine(LoadNextScene());
             }
         }
     }
 
-    IEnumerator ReloadSceneAfterDelay(float delay)
+    IEnumerator LoadNextScene()
     {
-        //指定された遅延時間(delay)秒後以下のプログラムを実行
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(3f);
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //次のシーンの名前を作成
+        //Stage1,Stage2,Stage3...
+        string nextSceneName = "Stage" + (stageCount + 1);
+
+        // 次のシーンを読み込む
+        SceneManager.LoadScene(nextSceneName);
+        Debug.Log("Stage2を読み込みます");
     }
 }

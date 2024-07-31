@@ -418,7 +418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb14f5cf18d7ec469d1b62dde14f657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalText: {fileID: 0}
+  goalText: {fileID: 1990731601}
 --- !u!114 &505629943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,6 +431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa3147d0527db94b9ce47d1f76ab062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageText: {fileID: 531634645}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1629,7 +1630,6 @@ GameObject:
   - component: {fileID: 1990731600}
   - component: {fileID: 1990731602}
   - component: {fileID: 1990731601}
-  - component: {fileID: 1990731603}
   m_Layer: 5
   m_Name: Goal Text
   m_TagString: Untagged
@@ -1698,19 +1698,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1990731599}
   m_CullTransparentMesh: 1
---- !u!114 &1990731603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1990731599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cb14f5cf18d7ec469d1b62dde14f657, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goalText: {fileID: 1990731601}
 --- !u!1 &2079437204
 GameObject:
   m_ObjectHideFlags: 0

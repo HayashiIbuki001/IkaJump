@@ -5,6 +5,8 @@ public class GoalUI : MonoBehaviour
 {
     public Text goalText;
 
+
+
     private void Start()
     {
         if (goalText == null)
