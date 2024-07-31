@@ -5,6 +5,13 @@ public class GoalUI : MonoBehaviour
 {
     public Text goalText;
 
+    private void Start()
+    {
+        if (goalText == null)
+        {
+            Debug.LogError("goalText‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ");
+        }
+    }
     public void DisplayGoalText(string message)
     {
         goalText.text = message;

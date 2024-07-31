@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StageManager : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class StageManager : MonoBehaviour
     // GoalUI スクリプトへの参照
     private GoalUI goalUI;
 
+    private StageUI stageUI;
+
+
     void Start()
     {
         // シーン内の GoalUI を探す
@@ -19,6 +23,10 @@ public class StageManager : MonoBehaviour
         {
             Debug.LogError("GoalUI がシーン内に見つかりません");
         }
+
+        stageUI = FindObjectOfType<StageUI>();
+
+        stageUI.StageText(stageCount);
     }
 
     // Update はフレームごとに呼ばれる
@@ -54,7 +62,18 @@ public class StageManager : MonoBehaviour
                 {
                     goalUI.DisplayGoalText("Stage " + stageCount + "\nClear!");
                 }
+
+                // 3秒後にシーンを再読み込み
+                StartCoroutine(ReloadSceneAfterDelay(3f));
             }
         }
+    }
+
+    IEnumerator ReloadSceneAfterDelay(float delay)
+    {
+        //指定された遅延時間(delay)秒後以下のプログラムを実行
+        yield return new WaitForSeconds(delay);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
