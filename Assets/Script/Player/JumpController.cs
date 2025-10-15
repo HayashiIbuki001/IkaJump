@@ -4,26 +4,23 @@ using UnityEngine;
 
 public class JumpController : MonoBehaviour
 {
-    /// <summary> ƒWƒƒƒ“ƒv—Í”{—¦ </summary>
-    [SerializeField] public float jumpPowerParcentage;
+    [SerializeField,Tooltip("ã‚¸ãƒ£ãƒ³ãƒ—å¨åŠ›")] public float jumpPowerParcentage;
     public new Rigidbody2D rigidbody;
-    /// <summary> ƒWƒƒƒ“ƒv‰Â”\‚©‚Ç‚¤‚© </summary>
+    /// <summary> ã‚¸ãƒ£ãƒ³ãƒ—å¯èƒ½ã‹ </summary>
     public bool jumpTrigger;
-    /// <summary> ƒ`ƒƒ[ƒW‚µ‚Ä‚¢‚éŠÔ </summary>
+    /// <summary> ãƒãƒ£ãƒ¼ã‚¸æ™‚é–“ </summary>
     private float chargeTime;
-    /// <summary> Å‘åƒ`ƒƒ[ƒW‚Ü‚Å‚Ì•b” </summary>
-    [SerializeField] public float maxCharge = 2;
 
-    /// <summary> ƒS[ƒ‹”»’è </summary>
+    [SerializeField,Tooltip("æœ€å¤§ãƒãƒ£ãƒ¼ã‚¸æ™‚é–“")] public float maxCharge = 2;
+
+    /// <summary> ã‚¸ãƒ£ãƒ³ãƒ—å®Œäº†ã‹ </summary>
     private bool Finished;
     // Start is called before the first frame update
     void Start()
     {
-        //rigidbody‚Â‚¯‚é
         rigidbody = GetComponent<Rigidbody2D>();
 
         jumpTrigger = true;
-        //revJumpTrigger = false;
         Finished = false;
     }
 
@@ -35,23 +32,20 @@ public class JumpController : MonoBehaviour
         Finish();
     }
 
-    /// <summary> ƒWƒƒƒ“ƒv‚Ì“®ì‚ğŒŸ’m‚·‚é</summary>
+    /// <summary> ã‚¸ãƒ£ãƒ³ãƒ—ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ãŸã‚‰ </summary>
     void JumpDetection()
     {
-        //ƒWƒƒƒ“ƒvƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é
         if (Input.GetKey(KeyCode.Space))
         {
             JumpCharge();
         }
 
-        if (jumpTrigger == true)
+        if (jumpTrigger)
         {
-            //ƒWƒƒƒ“ƒvƒ{ƒ^ƒ“‚ğ—£‚µ‚½
             if (Input.GetKeyUp(KeyCode.Space))
             {
                 Jump();
                 jumpTrigger = false;
-                //revJumpTrigger = true;
             }
         }
     }
@@ -60,9 +54,7 @@ public class JumpController : MonoBehaviour
     {
         if (chargeTime < maxCharge)
         {
-            //ƒ`ƒƒ[ƒW‚µ‚½ŠÔ‚ğ‘ã“ü
             chargeTime += Time.deltaTime;
-            //Debug.Log(chargeTime);
         }
         else if (chargeTime > maxCharge)
         {
@@ -72,10 +64,7 @@ public class JumpController : MonoBehaviour
 
     void Jump()
     {
-        //ƒWƒƒƒ“ƒv—Í
         rigidbody.AddForce(Vector3.up * chargeTime * (jumpPowerParcentage / 100) * 100);
-        //Debug.Log(chargeTime * (jumpPowerParcentage / 100) * 100);
-        //ƒ`ƒƒ[ƒWƒŠƒZƒbƒg
         chargeTime = 0;
     }
 
@@ -83,17 +72,15 @@ public class JumpController : MonoBehaviour
     {
         if (Finished)
         {
-            //Rigidbody‚ğ’â~
-            rigidbody.velocity = Vector3.zero;
-
-            //d—Í‚ğ’â~‚³‚¹‚é
-            rigidbody.isKinematic = true;
+            //Rigidbodyå¤‰æ›´
+            rigidbody.linearVelocity = Vector3.zero;
+            rigidbody.bodyType = RigidbodyType2D.Kinematic;
         }
     }
 
 
     /// <summary>
-    /// ‘¼ƒXƒNƒŠƒvƒg‚Ì•Ï”‚ğŒÄ‚Ô
+    /// ä»–ã‚¹ã‚¯ãƒªãƒ—ãƒˆã«æ¸¡ã™
     /// </summary>
     void VariableSharing()
     {
@@ -103,17 +90,16 @@ public class JumpController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //’n–Ê‚É‚¢‚é‚Æ‚«
+        //åœ°é¢ã¨é‡ãªã£ãŸã‚‰
         if (collision.gameObject.tag == "Ground")
         {
-            // ÚG‚µ‚½ˆÊ’u‚Ì–@üƒxƒNƒgƒ‹‚ğæ“¾
+            // åœ°é¢ã®ä¸Šã«ã„ãªã„ã¨ã‚¸ãƒ£ãƒ³ãƒ—ã§ããªã„ã‚ˆã†ã«
+            // æ¥åœ°é¢ã®æ³•ç·šã‚’å–å¾—
             Vector2 contactNormal = collision.contacts[0].normal;
-            // ‘«ê‚Ìã‚©‚çÚG‚µ‚½ê‡‚Ì‚İjumpTrigger‚ğtrue‚É‚·‚é
             if (contactNormal.y > 0.5f)
             {
                 jumpTrigger = true;
-                //Debug.Log("’n–Ê‚¢‚é");
-            }
+            } 
         }
     }
 

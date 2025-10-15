@@ -10,7 +10,7 @@ public class GoalController : MonoBehaviour
     void Start()
     {
         // ƒV[ƒ““à‚Ì StageManager ‚ğ’T‚·
-        stageManager = FindObjectOfType<StageManager>();
+        stageManager = FindFirstObjectByType<StageManager>();
     }
 
     void OnDestroy()

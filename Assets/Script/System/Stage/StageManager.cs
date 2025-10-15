@@ -14,7 +14,7 @@ public class StageManager : MonoBehaviour
     void Start()
     {
         // シーン内の GoalUI を探す
-        goalUI = FindObjectOfType<GoalUI>();
+        goalUI = FindFirstObjectByType<GoalUI>();
         if (goalUI == null)
         {
             Debug.LogError("GoalUI がシーン内に見つかりません");
