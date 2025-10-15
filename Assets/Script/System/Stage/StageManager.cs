@@ -14,14 +14,16 @@ public class StageManager : MonoBehaviour
     void Start()
     {
         // シーン内の GoalUI を探す
-        goalUI = FindFirstObjectByType<GoalUI>();
         if (goalUI == null)
         {
             Debug.LogError("GoalUI がシーン内に見つかりません");
         }
+        else
+        {
+            goalUI = FindFirstObjectByType<GoalUI>();
+        }
     }
 
-    // Update はフレームごとに呼ばれる
     public void Update()
     {
         // ゲーム内の Goal タグが付いたオブジェクトがすべて消えたかチェック
