@@ -9,10 +9,12 @@ public class StageManager : MonoBehaviour
     public bool counted = false;
 
     // GoalUI スクリプトへの参照
-    private GoalUI goalUI;
+    private goalUI goalUI
 
     void Start()
     {
+        
+
         // シーン内の GoalUI を探す
         if (goalUI == null)
         {

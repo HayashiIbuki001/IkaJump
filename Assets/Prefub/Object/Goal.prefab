@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 3902389065202670976}
   - component: {fileID: 3564492700008547239}
   - component: {fileID: 5959481112235899316}
-  - component: {fileID: 4178115964424256630}
-  - component: {fileID: 5459735433036818034}
+  - component: {fileID: 240847478764275397}
   m_Layer: 0
   m_Name: Goal
   m_TagString: Goal
@@ -52,6 +51,11 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -73,6 +77,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -407791349
   m_SortingLayer: 2
   m_SortingOrder: 0
@@ -95,6 +100,7 @@ CircleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6802465338551438243}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -118,11 +124,11 @@ CircleCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
   m_Radius: 0.24999999
---- !u!114 &4178115964424256630
+--- !u!114 &240847478764275397
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,18 +137,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 6802465338551438243}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddc5eef925726a54da7b240dc8db1064, type: 3}
+  m_Script: {fileID: 11500000, guid: 8163bedf18e55bb4395b49ba3612f0d7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5459735433036818034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6802465338551438243}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5c0da854fe44ea409d221e1b95d7fec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::GoalManager
+  goalText: {fileID: 0}
+  isGoal: 0
