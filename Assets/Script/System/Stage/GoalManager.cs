@@ -23,7 +23,9 @@ public class GoalManager : MonoBehaviour
         goalText.text = "";
         IsGoal = false;
 
-        FindFirstObjectByType<TimeUI>().ResetTime();
+        FindFirstObjectByType<TimeUI>().ResetTime(); // 経過時間リセット
+        FindFirstObjectByType<StageUI>().UpdateStageCount();
+
 
         // 再読み込み
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
