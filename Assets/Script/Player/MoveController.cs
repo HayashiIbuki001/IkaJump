@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Build;
 using UnityEngine;
 
 public class MoveController : MonoBehaviour
 {
     /// <summary> 左右に移動するスピード </summary>
     [SerializeField] public float speed;
+    private float moveX = 0f;
 
     /// <summary> ジャンプしているかどうか </summary>
     public bool isJump;
@@ -40,13 +38,19 @@ public class MoveController : MonoBehaviour
             //Aか左矢印を押している
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
-                transform.Translate(speed * -0.01f, 0, 0);
+                moveX = -1f;
             }
             //Dか右矢印を押している
             else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
-                transform.Translate(speed * 0.01f, 0, 0);
+                moveX = 1f;
             }
+            else
+            {
+                moveX = 0f;
+            }
+
+                transform.Translate(moveX * speed * Time.deltaTime, 0, 0);
         }
     }
 

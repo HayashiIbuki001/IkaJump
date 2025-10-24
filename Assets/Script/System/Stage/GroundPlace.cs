@@ -75,7 +75,7 @@ public class GroundPlace : MonoBehaviour
             // ゴールオブジェクトのx軸位置を -10 に固定
             float goalX = -8f;
             Vector3 goalPosition = new Vector3(goalX, goalYPosition, 0f);
-            Instantiate(goalObject, goalPosition, Quaternion.identity);
+            goalObject.transform.position = goalPosition; 
         }
     }
 }

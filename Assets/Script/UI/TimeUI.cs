@@ -8,6 +8,8 @@ public class TimeUI : MonoBehaviour
 {
     public Text timeText;
 
+    public GoalManager goalManager;
+
     /// <summary> 経過時間をON/OFFできる関数 </summary>
     public bool playTimer;
     /// <summary> 今の経過時間 </summary>
@@ -20,16 +22,15 @@ public class TimeUI : MonoBehaviour
         {
             Debug.LogError("時間を表示するテキストUIが割り当てられてないよ");
         }
+
+        playTimer = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        var goalObj = GameObject.FindGameObjectWithTag("Goal");
-
-        if (timeText != null)
+        if (playTimer && !goalManager.IsGoal)
         {
-            if (goalObj != null)
             nowTime += Time.deltaTime;
             int minutes = Mathf.FloorToInt(nowTime / 60);
             int seconds = Mathf.FloorToInt(nowTime % 60);
@@ -37,5 +38,10 @@ public class TimeUI : MonoBehaviour
 
             timeText.text = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, milliseconds);
         }
+    }
+
+    public void ResetTime()
+    {
+        nowTime = 0;
     }
 }

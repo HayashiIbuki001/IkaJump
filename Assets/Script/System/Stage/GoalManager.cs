@@ -1,15 +1,17 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GoalManager : MonoBehaviour
 {
     [SerializeField] public TextMeshProUGUI goalText;
-    public bool isGoal = false;
+    public bool IsGoal {  get; private set; } = false;
 
     private void GoalCollected()
     {
-        isGoal = true;
+        IsGoal = true;
+        this.transform.position = new Vector3(1000f, transform.position.y, transform.position.z);
         goalText.text = "Stage Clear!";
 
         StartCoroutine(AfterDelay());
@@ -19,8 +21,12 @@ public class GoalManager : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         goalText.text = "";
-        isGoal = false;
+        IsGoal = false;
 
+        FindFirstObjectByType<TimeUI>().ResetTime();
+
+        // çƒì«Ç›çûÇ›
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 
