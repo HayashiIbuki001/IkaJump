@@ -12,7 +12,7 @@ public class StageUI : MonoBehaviour
     {
         if (stageText == null)
         {
-            stageText = FindFirstObjectByType<TextMeshProUGUI>();
+            stageText = GameObject.Find("Stage Text").GetComponent<TextMeshProUGUI>();
         }
     }
 

@@ -78,4 +78,10 @@ public class GroundPlace : MonoBehaviour
             goalObject.transform.position = goalPosition; 
         }
     }
+
+    public void Reload()
+    {
+        numberOfObjects += 3;
+        PlaceObjects();
+    }
 }

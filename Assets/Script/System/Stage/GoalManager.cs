@@ -24,11 +24,11 @@ public class GoalManager : MonoBehaviour
         IsGoal = false;
 
         FindFirstObjectByType<TimeUI>().ResetTime(); // 経過時間リセット
-        FindFirstObjectByType<StageUI>().UpdateStageCount();
-
+        FindFirstObjectByType<StageUI>().UpdateStageCount(); // ステージカウント更新
 
         // 再読み込み
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        FindFirstObjectByType<GroundPlace>().Reload();
     }
 
 
