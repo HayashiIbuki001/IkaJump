@@ -28,9 +28,15 @@ public class GoalManager : MonoBehaviour
 
         // çƒì«Ç›çûÇ›
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        FindFirstObjectByType<GroundPlace>().Reload();
+        
+        StartCoroutine(AfterLoadScene());
     }
 
+    private IEnumerator AfterLoadScene()
+    {
+        yield return null;
+        FindFirstObjectByType<GroundPlace>().Reload();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

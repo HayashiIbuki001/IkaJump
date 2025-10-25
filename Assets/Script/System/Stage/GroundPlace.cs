@@ -20,6 +20,9 @@ public class GroundPlace : MonoBehaviour
     [SerializeField, Tooltip("y軸の間隔")]
     private float ySpacing = 9.1f;
 
+    [SerializeField] private Transform background;
+    [SerializeField,Tooltip("背景の高さを追加で伸ばす量")] private float bgExHeight = 5f;
+
     void Start()
     {
         // エラーチェック
@@ -66,6 +69,7 @@ public class GroundPlace : MonoBehaviour
             {
                 maxYPosition = yPosition;
             }
+                
         }
 
         // ゴールオブジェクトの配置
@@ -73,9 +77,13 @@ public class GroundPlace : MonoBehaviour
         {
             float goalYPosition = maxYPosition + ySpacing;
             // ゴールオブジェクトのx軸位置を -10 に固定
-            float goalX = -8f;
-            Vector3 goalPosition = new Vector3(goalX, goalYPosition, 0f);
-            goalObject.transform.position = goalPosition; 
+            goalObject.transform.position = new Vector3(-8f, goalYPosition, 0f);
+
+            // 背景を伸ばす
+            if (background != null)
+            {
+                background.position = new Vector3(background.position.x, goalYPosition + bgExHeight, background.position.z);
+            }
         }
     }
 
