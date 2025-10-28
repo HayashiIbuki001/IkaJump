@@ -21,10 +21,14 @@ public class GroundPlace : MonoBehaviour
     private float ySpacing = 9.1f;
 
     [SerializeField] private Transform background;
-    [SerializeField,Tooltip("”wŒi‚Ì‚‚³‚ğ’Ç‰Á‚ÅL‚Î‚·—Ê")] private float bgExHeight = 5f;
+    [SerializeField, Tooltip("”wŒi‚ğ1‰ñ‚ÅL‚Î‚·‚‚³")] private float addHeight = 20f;
+    private SpriteRenderer backGroundSr;
+    
 
     void Start()
     {
+        backGroundSr = background.GetComponent<SpriteRenderer>();
+
         // ƒGƒ‰[ƒ`ƒFƒbƒN
         ErrorCheck();
 
@@ -82,7 +86,8 @@ public class GroundPlace : MonoBehaviour
             // ”wŒi‚ğL‚Î‚·
             if (background != null)
             {
-                background.position = new Vector3(background.position.x, goalYPosition + bgExHeight, background.position.z);
+                backGroundSr.size = new Vector2(backGroundSr.size.x, backGroundSr.size.y + addHeight);
+                background.position += new Vector3(0, addHeight / 2f, 0);
             }
         }
     }
