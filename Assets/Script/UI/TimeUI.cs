@@ -13,7 +13,8 @@ public class TimeUI : MonoBehaviour
     /// <summary> åoâﬂéûä‘ÇON/OFFÇ≈Ç´ÇÈä÷êî </summary>
     public bool playTimer;
     /// <summary> ç°ÇÃåoâﬂéûä‘ </summary>
-    float nowTime;
+    private float time;
+    public float Time => time;
 
     // Start is called before the first frame update
     void Start()
@@ -31,10 +32,10 @@ public class TimeUI : MonoBehaviour
     {
         if (playTimer && !goalManager.IsGoal)
         {
-            nowTime += Time.deltaTime;
-            int minutes = Mathf.FloorToInt(nowTime / 60);
-            int seconds = Mathf.FloorToInt(nowTime % 60);
-            int milliseconds = Mathf.FloorToInt((nowTime * 100) % 100);
+            time += UnityEngine.Time.deltaTime;
+            int minutes = Mathf.FloorToInt(time / 60);
+            int seconds = Mathf.FloorToInt(time % 60);
+            int milliseconds = Mathf.FloorToInt((time * 100) % 100);
 
             timeText.text = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, milliseconds);
         }
@@ -42,6 +43,6 @@ public class TimeUI : MonoBehaviour
 
     public void ResetTime()
     {
-        nowTime = 0;
+        time = 0;
     }
 }

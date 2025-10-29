@@ -86,8 +86,8 @@ public class GroundPlace : MonoBehaviour
             // îwåiÇêLÇŒÇ∑
             if (background != null)
             {
-                
 
+                backGroundSr.size = new Vector2(backGroundSr.size.x, backGroundSr.size.y + addHeight);
                 background.position += new Vector3(0, addHeight / 2f, 0);
             }
         }

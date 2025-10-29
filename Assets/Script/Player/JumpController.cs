@@ -118,5 +118,10 @@ public class JumpController : MonoBehaviour
             //Debug.Log("goal");
             Finished = true;
         }
+
+        if (collision.gameObject.tag == "Death")
+        {
+            Finished = true;
+        }
     }
 }
